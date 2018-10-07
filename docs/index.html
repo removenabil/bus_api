@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>bus_api</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+
+    <!-- Place this tag in your head or just before your close body tag. -->
+    <script async defer src="https://buttons.github.io/buttons.js"></script>
+
+</head>
+
+<body>
+
+
+
+    <div class="app">
+        <div class="jumbotron">
+
+            <div class="container">
+                <h1>bus_api_demo</h1>
+                <small>Input bus stop code:</small>
+                <input type="text" v-model="bus_stop_code" class="form-control" @input="getData">
+
+                <br>
+
+                <!-- Place this tag where you want the button to render. -->
+                <a class="github-button" href="https://github.com/ridhwanshah" data-size="large" aria-label="Follow @ridhwanshah on GitHub">Follow
+                    @ridhwanshah</a>
+
+                <!-- Place this tag where you want the button to render. -->
+                <a class="github-button" href="https://github.com/ridhwanshah/bus_api" data-icon="octicon-star"
+                    data-size="large" aria-label="Star ridhwanshah/bus_api on GitHub">Star</a>
+
+                <!-- Place this tag where you want the button to render. -->
+                <a class="github-button" href="https://github.com/ridhwanshah/bus_api/subscription" data-icon="octicon-eye"
+                    data-size="large" aria-label="Watch ridhwanshah/bus_api on GitHub">Watch</a>
+
+            </div>
+
+        </div>
+
+
+
+        <div class="container">
+            <pre><code>
+the input above has v-model="bus_stop_code" and @input="getData"
+                
+getData() {
+    fetch("https://arrivelah.herokuapp.com/?id=" + this.bus_stop_code)
+    .then(response => response.json())
+    .then(data => {
+        console.log(data);
+    })
+}
+            </code></pre>
+
+
+            <div class="row">
+
+                <div v-for="item in data.services" class="col-lg-6">
+
+                    <div class="item">
+                        <p>Bus Number: {{item.no}}</p>
+                        <code>Called using json.services[i].no where i is the index</code>
+
+                        <hr>
+
+                        <p>Next Time: {{item.next.time}}</p>
+                        <code>Called using json.services[i].next.time where i is the index</code>
+
+                        <hr>
+
+                        <p>Next Duration (ms): {{item.next.duration_ms}}</p>
+                        <code>Called using json.services[i].next.duration_ms where i is the index</code>
+
+                        <hr>
+
+                        <p>Next Duration (min): {{Math.floor(item.next.duration_ms / 60000)}}</p>
+                        <code>Same as above but instead its Math.floor(duration) / 60000 to convert to minutes</code>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.17/vue.js"></script>
+    <script src="main.js"></script>
+</body>
+
+</html>
