@@ -47,9 +47,13 @@
 
 
         <div class="container">
-            <pre><code>
-the input above has v-model="bus_stop_code" and @input="getData"
+            <pre class="prettyprint"><code>
+
+// Input HTML
+&lt;input type=&quot;text&quot; v-model=&quot;bus_stop_code&quot; class=&quot;form-control&quot; @input=&quot;getData&quot;&gt;
+
                 
+// @input="getData" (in input above) calls this function below
 getData() {
     fetch("https://arrivelah.herokuapp.com/?id=" + this.bus_stop_code)
     .then(response => response.json())
@@ -57,6 +61,7 @@ getData() {
         console.log(data);
     })
 }
+
             </code></pre>
 
 
@@ -93,6 +98,7 @@ getData() {
         </div>
     </div>
 
+    <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.17/vue.js"></script>
     <script src="main.js"></script>
 </body>
